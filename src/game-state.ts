@@ -12,8 +12,13 @@ export class GameStateModel{
     
 }
 
+class Card {
+    rank: string;
+    suit: string;
+}
+
 class Player{
     name : string;
-    hole_cards : Array<any>;
+    hole_cards : Array<Card>;
     bet : number;
 }

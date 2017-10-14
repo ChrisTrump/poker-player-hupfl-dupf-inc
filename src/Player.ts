@@ -16,6 +16,13 @@ export class Player {
         }
     }
 
+    private hasPair(gameState: GameStateModel) {
+        const players: any[] = gameState.players;
+        const ourPlayer = players.filter(player => player.name == "Hupfl Dupf Inc");
+        const cards: any[] = ourPlayer[0].hole_cards;
+        return cards[0].rank == cards[1].rank;
+    }
+
     public showdown(gameState: any): void {
 
     }
