@@ -2,7 +2,7 @@ import {expect} from "chai";
 import Player from "../src/Player";
 
 describe("Player", () => {
-    const game_state = {
+    const game_state: any = {
         "players": [
             {
                 "name": "Player 1",
@@ -11,7 +11,7 @@ describe("Player", () => {
                 "bet": 0,
                 "hole_cards": [],
                 "version": "Version name 1",
-                "id": 0
+                "id": 0,
             },
             {
                 "name": "Player 2",
@@ -20,8 +20,8 @@ describe("Player", () => {
                 "bet": 0,
                 "hole_cards": [],
                 "version": "Version name 2",
-                "id": 1
-            }
+                "id": 1,
+            },
         ],
         "tournament_id": "550d1d68cd7bd10003000003",
         "game_id": "550da1cb2d909006e90004b1",
@@ -32,13 +32,18 @@ describe("Player", () => {
         "dealer": 0,
         "community_cards": [],
         "current_buy_in": 0,
-        "pot": 0
+        "pot": 0,
     };
 
     it("should work", () => {
-       const player = new Player();
-       let howMuchWasBet = 0;
-       player.betRequest(game_state, (howMuch: number) => howMuchWasBet = howMuch);
-       expect(howMuchWasBet).to.equal(100);
+        const player = new Player();
+        let howMuchWasBet = undefined;
+        player.betRequest(game_state, (howMuch: number) => {
+            if (howMuchWasBet !== undefined) {
+                return;
+            }
+            howMuchWasBet = howMuch;
+        });
+        expect(howMuchWasBet).to.equal(10);
     });
 });
