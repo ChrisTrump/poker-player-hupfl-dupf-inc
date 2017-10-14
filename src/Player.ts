@@ -4,6 +4,8 @@ export class Player {
     public betRequest(gameState: GameStateModel, betCallback: (bet: number) => void): void {
         try {
             let highestBet = this.getHighestBet(gameState);
+            let boozercards = this.getBoozerCards(gameState);
+            console.log(boozercards[0].rank);
             if (this.are7and2(gameState)){
                 betCallback(0);
             }
@@ -34,6 +36,12 @@ export class Player {
     private getCards(gameState: GameStateModel): any [] {
         const players: any[] = gameState.players;
         const ourPlayer = players.filter(player => player.name === "Hupfl Dupf Inc");
+        const cards: any[] = ourPlayer[0].hole_cards;
+        return cards;
+    }
+    private getBoozerCards(gameState: GameStateModel): any [] {
+        const players: any[] = gameState.players;
+        const ourPlayer = players.filter(player => player.name === "TheBoozers");
         const cards: any[] = ourPlayer[0].hole_cards;
         return cards;
     }
