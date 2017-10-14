@@ -7,12 +7,7 @@ export class Player {
             if (this.are7and2(gameState)){
                 betCallback(0);
             }
-            //if (highestBet === 1000) {
-            //    betCallback(1000);
-            //}
-            //if (highestBet + 10 <= 1000) {
-             //   betCallback(highestBet + 10);
-            //}
+
             if (this.hasPair(gameState)) {
                 betCallback(highestBet + 20);
             }
