@@ -7,8 +7,8 @@ export class Player {
             //if (highestBet === 1000) {
             //    betCallback(1000);
             //}
-            if (highestBet + 100 <= 1000) {
-                betCallback(highestBet + 100);
+            if (highestBet + 10 <= 1000) {
+                betCallback(highestBet + 10);
             }
             betCallback(10);
         } catch (e) {
