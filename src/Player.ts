@@ -33,6 +33,14 @@ export class Player {
         return false;
     }
 
+    public hasSpecificPairs(gameState: GameStateModel): boolean {
+        const cards = this.getCards(gameState);
+        return cards
+            .map(c => c.rank)
+            .filter(rank => ["A", "Q", "K"].some(it => it === rank))
+            .length === 0;
+    }
+
     private getCards(gameState: GameStateModel): any [] {
         const players: any[] = gameState.players;
         const ourPlayer = players.filter(player => player.name === "Hupfl Dupf Inc");
