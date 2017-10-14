@@ -4,6 +4,9 @@ export class Player {
     public betRequest(gameState: GameStateModel, betCallback: (bet: number) => void): void {
         try {
             let highestBet = this.getHighestBet(gameState);
+            if (this.are7and2(gameState)){
+                betCallback(0);
+            }
             //if (highestBet === 1000) {
             //    betCallback(1000);
             //}
@@ -23,6 +26,14 @@ export class Player {
     private hasPair(gameState: GameStateModel) {
         const cards = this.getCards(gameState);
         return cards[0].rank == cards[1].rank;
+    }
+
+    private are7and2(gameState: GameStateModel):boolean{
+        let sth = this.getCards(gameState);
+        if((sth[0].rank === 2 && sth[1].rank === 7 )||(sth[0].rank === 7 && sth[1].rank === 2 ) ){
+            return true;
+        }
+        return false;
     }
 
     private getCards(gameState: GameStateModel): any [] {
