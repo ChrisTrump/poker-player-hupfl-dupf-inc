@@ -14,12 +14,13 @@ export class Player {
         } catch (e) {
             betCallback(11);
         }
+    }
 
+    private hasPair(gameState: GameStateModel) {
         const players: any[] = gameState.players;
         const ourPlayer = players.filter(player => player.name == "Hupfl Dupf Inc");
         const cards: any[] = ourPlayer[0].hole_cards;
-        const isPair = cards[0].rank == cards[1].rank;
-
+        return cards[0].rank == cards[1].rank;
     }
 
     public showdown(gameState: any): void {
