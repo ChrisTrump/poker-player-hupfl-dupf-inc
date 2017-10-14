@@ -67,14 +67,15 @@ export class Player {
 
     }
 
-    private getHighestBet(gameState: GameStateModel): number {
-        let highestBet = 0;
-        for (let player of gameState.players) {
-            if (player.bet > highestBet) {
-                highestBet = player.bet;
-            }
-        }
-        return highestBet;
+    public getHighestBet(gameState: GameStateModel): number {
+        return gameState.players
+            .map(p => parseInt(p.bet.toString()))
+            .reduce((previousValue, other) => {
+                if (previousValue < other) {
+                    return other;
+                }
+                return previousValue;
+            });
     }
 }
 
