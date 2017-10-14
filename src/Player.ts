@@ -10,6 +10,10 @@ export class Player {
                 betCallback(0);
             }
 
+            if (this.hasSpecificPairs(gameState)) {
+                betCallback(highestBet + 50);
+            }
+
             if (this.hasPair(gameState)) {
                 betCallback(highestBet + 20);
             }
@@ -37,11 +41,14 @@ export class Player {
     }
 
     public hasSpecificPairs(gameState: GameStateModel): boolean {
+        if (!this.hasPair(gameState)) {
+            return false;
+        }
+
         const cards = this.getCards(gameState);
-        return cards
-            .map(c => c.rank)
+        return cards.map(c => c.rank)
             .filter(rank => ["A", "Q", "K"].some(it => it === rank))
-            .length === 0;
+            .length > 0;
     }
 
     private getCards(gameState: GameStateModel): any [] {
