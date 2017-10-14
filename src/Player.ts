@@ -10,7 +10,7 @@ export class Player {
             if (highestBet + 100 <= 1000) {
                 betCallback(highestBet + 100);
             }
-            betCallback(100);
+            betCallback(10);
         } catch (e) {
             betCallback(10);
         }
