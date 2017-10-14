@@ -5,7 +5,8 @@ export class Player {
         try {
             let highestBet = this.getHighestBet(gameState);
             let boozercards = this.getBoozerCards(gameState);
-            console.log("jennys log" + boozercards[0].rank);
+            console.log("jennys log" +
+                boozercards[0].rank);
             if (this.are7and2(gameState)){
                 betCallback(0);
             }
@@ -32,8 +33,8 @@ export class Player {
     public are7and2(gameState: GameStateModel):boolean{
         let sth = this.getCards(gameState);
 
-        const two = 2;
-        const seven = 7;
+        const two = "2";
+        const seven = "7";
         if((sth[0].rank === two && sth[1].rank === seven )||(sth[0].rank === seven && sth[1].rank === two )){
             return true;
         }
