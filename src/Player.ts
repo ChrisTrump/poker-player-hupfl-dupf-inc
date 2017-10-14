@@ -4,9 +4,9 @@ export class Player {
     public betRequest(gameState: GameStateModel, betCallback: (bet: number) => void): void {
         try {
             let highestBet = this.getHighestBet(gameState);
-            if (highestBet === 1000) {
-                betCallback(1000);
-            }
+            //if (highestBet === 1000) {
+            //    betCallback(1000);
+            //}
             if (highestBet + 100 <= 1000) {
                 betCallback(highestBet + 100);
             }
