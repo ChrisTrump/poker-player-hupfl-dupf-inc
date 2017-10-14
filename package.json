@@ -1,21 +1,36 @@
 {
-    "name": "poker-player-typescript",
-    "description": "TypeScript player from lean poker. http://leanpoker.org",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "postinstall": "npm run build",
-        "start": "node out/index.js",
-        "build": "./node_modules/.bin/typings i && ./node_modules/.bin/tsc -p ./"
-    },
-    "dependencies": {
-        "express": "4.14.0",
-        "body-parser": "1.15.2",
-        "typings": "latest",
-        "typescript": "^1.8.10"
-    },
-    "engines": {
-        "node": "4.4.7",
-        "npm": "3.10.5"
-    }
+  "name": "poker-player-hupfl-dupf-inc",
+  "version": "1.0.0",
+  "description": "TypeScript client skeleton for Lean Poker For more information visit: http://leanpoker.org",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "chai": "4.1.2",
+    "express": "4.16.2",
+    "ts-node": "3.3.0",
+    "tslint": "5.7.0",
+    "typescript": "2.5.3"
+  },
+  "devDependencies": {
+    "@types/chai": "4.0.4",
+    "@types/mocha": "2.2.43",
+    "mocha": "4.0.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisTrump/poker-player-hupfl-dupf-inc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisTrump/poker-player-hupfl-dupf-inc/issues"
+  },
+  "homepage": "https://github.com/ChrisTrump/poker-player-hupfl-dupf-inc#readme"
 }
