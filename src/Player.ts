@@ -12,7 +12,7 @@ export class Player {
             }
             betCallback(10);
         } catch (e) {
-            betCallback(10);
+            betCallback(11);
         }
     }
 
