@@ -1,4 +1,4 @@
-class GameStateModel{
+export class GameStateModel{
     players: Array<Player>
 
     public getMyPlayer() : Player{
@@ -20,6 +20,7 @@ class GameStateModel{
     }
 
 }
+
 class Player{
     name : string;
     hole_cards : Array<any>;
