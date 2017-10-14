@@ -8,3 +8,4 @@ TypeScript client skeleton for Lean Poker For more information visit: http://lea
 $ npm install
 $ npm start
 ```
+test
