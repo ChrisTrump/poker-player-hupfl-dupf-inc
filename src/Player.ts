@@ -10,6 +10,10 @@ export class Player {
             //if (highestBet + 10 <= 1000) {
              //   betCallback(highestBet + 10);
             //}
+            if (this.hasPair(gameState)) {
+                betCallback(highestBet + 20);
+            }
+
             betCallback(10);
         } catch (e) {
             betCallback(11);
@@ -17,10 +21,15 @@ export class Player {
     }
 
     private hasPair(gameState: GameStateModel) {
-        const players: any[] = gameState.players;
-        const ourPlayer = players.filter(player => player.name == "Hupfl Dupf Inc");
-        const cards: any[] = ourPlayer[0].hole_cards;
+        const cards = this.getCards(gameState);
         return cards[0].rank == cards[1].rank;
+    }
+
+    private getCards(gameState: GameStateModel): any [] {
+        const players: any[] = gameState.players;
+        const ourPlayer = players.filter(player => player.name === "Hupfl Dupf Inc");
+        const cards: any[] = ourPlayer[0].hole_cards;
+        return cards;
     }
 
     public showdown(gameState: any): void {
