@@ -4,9 +4,7 @@ export class Player {
     public betRequest(gameState: GameStateModel, betCallback: (bet: number) => void): void {
         try {
             let highestBet = this.getHighestBet(gameState);
-            let boozercards = this.getBoozerCards(gameState);
-            console.log("jennys log" +
-                boozercards[0].rank);
+
             if (this.are7and2(gameState)){
                 betCallback(0);
             }
