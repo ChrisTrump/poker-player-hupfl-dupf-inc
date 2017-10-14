@@ -2,14 +2,24 @@ import {expect} from "chai";
 import Player from "../src/Player";
 
 describe("Player", () => {
-    const game_state: any = {
+
+    const gameState: any = {
         "players": [
             {
-                "name": "Player 1",
+                "name": "Hupfl Dupf Inc",
                 "stack": 1000,
                 "status": "active",
                 "bet": 0,
-                "hole_cards": [],
+                "hole_cards": [
+                    {
+                        "rank": "6",
+                        "suit": "hearts",
+                    },
+                    {
+                        "rank": "J",
+                        "suit": "spades",
+                    },
+                ],
                 "version": "Version name 1",
                 "id": 0,
             },
@@ -23,27 +33,61 @@ describe("Player", () => {
                 "id": 1,
             },
         ],
-        "tournament_id": "550d1d68cd7bd10003000003",
-        "game_id": "550da1cb2d909006e90004b1",
-        "round": 0,
-        "bet_index": 0,
-        "small_blind": 10,
-        "orbits": 0,
-        "dealer": 0,
-        "community_cards": [],
-        "current_buy_in": 0,
-        "pot": 0,
     };
 
+    let player: Player;
+
+    beforeEach(() => player = new Player());
+
     it("should work", () => {
-        const player = new Player();
         let howMuchWasBet = undefined;
-        player.betRequest(game_state, (howMuch: number) => {
+        player.betRequest(gameState, (howMuch: number) => {
             if (howMuchWasBet !== undefined) {
                 return;
             }
             howMuchWasBet = howMuch;
         });
-        expect(howMuchWasBet).to.equal(10);
+        expect(howMuchWasBet).not.equal(11);
+    });
+
+    it("should detect pairs", () => {
+        const hasPairs: any = {
+            "players": [
+                {
+                    "name": "Hupfl Dupf Inc",
+                    "hole_cards": [
+                        {
+                            "rank": "6",
+                            "suit": "hearts",
+                        },
+                        {
+                            "rank": "6",
+                            "suit": "spades",
+                        },
+                    ],
+                },
+            ],
+        };
+
+        const distinctCards: any = {
+            "players": [
+                {
+                    "name": "Hupfl Dupf Inc",
+                    "hole_cards": [
+                        {
+                            "rank": "6",
+                            "suit": "hearts",
+                        },
+                        {
+                            "rank": "J",
+                            "suit": "spades",
+                        },
+                    ],
+                },
+            ],
+        };
+
+        expect(player.hasPair(hasPairs)).to.be.true;
+        expect(player.hasPair(distinctCards)).to.be.false;
     });
 });

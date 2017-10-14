@@ -10,13 +10,16 @@ export class Player {
             //if (highestBet + 10 <= 1000) {
              //   betCallback(highestBet + 10);
             //}
+            if (this.hasPair(gameState)) {
+                betCallback(100);
+            }
             betCallback(10);
         } catch (e) {
             betCallback(11);
         }
     }
 
-    private hasPair(gameState: GameStateModel) {
+    public hasPair(gameState: GameStateModel) {
         const players: any[] = gameState.players;
         const ourPlayer = players.filter(player => player.name == "Hupfl Dupf Inc");
         const cards: any[] = ourPlayer[0].hole_cards;
