@@ -9,16 +9,7 @@ export class GameStateModel{
         }
         return null;
     }
-    public getHightesBet():number{
-        var highestBet = 0;
-        for (let player of this.players) {
-            if(player.bet > highestBet){
-                highestBet = player.bet;
-            }
-        }
-        return highestBet;
-    }
-
+    
 }
 
 class Player{
