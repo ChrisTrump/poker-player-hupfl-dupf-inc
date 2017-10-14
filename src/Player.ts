@@ -1,11 +1,11 @@
-import {GameStateModel} from "./game-state";
+import {GameStateModel} from './game-state';
 
 export class Player {
     public betRequest(gameState: GameStateModel, betCallback: (bet: number) => void): void {
         try {
             let highestBet = this.getHighestBet(gameState);
 
-            if (this.are7and2(gameState)){
+            if (this.are7and2(gameState)) {
                 betCallback(0);
             }
 
@@ -28,12 +28,12 @@ export class Player {
         return cards[0].rank == cards[1].rank;
     }
 
-    public are7and2(gameState: GameStateModel):boolean{
+    public are7and2(gameState: GameStateModel): boolean {
         let sth = this.getCards(gameState);
 
-        const two = "2";
-        const seven = "7";
-        if((sth[0].rank === two && sth[1].rank === seven )||(sth[0].rank === seven && sth[1].rank === two )){
+        const two = '2';
+        const seven = '7';
+        if ((sth[0].rank === two && sth[1].rank === seven ) || (sth[0].rank === seven && sth[1].rank === two )) {
             return true;
         }
         return false;
@@ -46,19 +46,20 @@ export class Player {
 
         const cards = this.getCards(gameState);
         return cards.map(c => c.rank)
-            .filter(rank => ["A", "Q", "K"].some(it => it === rank))
+            .filter(rank => ['A', 'Q', 'K'].some(it => it === rank))
             .length > 0;
     }
 
     private getCards(gameState: GameStateModel): any [] {
         const players: any[] = gameState.players;
-        const ourPlayer = players.filter(player => player.name === "Hupfl Dupf Inc");
+        const ourPlayer = players.filter(player => player.name === 'Hupfl Dupf Inc');
         const cards: any[] = ourPlayer[0].hole_cards;
         return cards;
     }
+
     private getBoozerCards(gameState: GameStateModel): any [] {
         const players: any[] = gameState.players;
-        const ourPlayer = players.filter(player => player.name === "TheBoozers");
+        const ourPlayer = players.filter(player => player.name === 'TheBoozers');
         const cards: any[] = ourPlayer[0].hole_cards;
         return cards;
     }
@@ -70,12 +71,13 @@ export class Player {
     public getHighestBet(gameState: GameStateModel): number {
         return gameState.players
             .map(p => parseInt(p.bet.toString()))
-            .reduce((previousValue, other) => {
-                if (previousValue < other) {
-                    return other;
-                }
-                return previousValue;
-            });
+            .reduce((previousValue, other) =>
+                this.maximum(previousValue, other)
+            );
+    }
+
+    private maximum(first: number, second: number): number {
+        return first < second ? second : first;
     }
 }
 
