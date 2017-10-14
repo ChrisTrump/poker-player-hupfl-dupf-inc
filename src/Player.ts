@@ -1,3 +1,5 @@
+import {GameStateModel} from "./game-state";
+
 export class Player {
   public betRequest(gameState: GameStateModel, betCallback: (bet: number) => void): void {
     try {
